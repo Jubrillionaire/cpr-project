@@ -2,8 +2,9 @@
 #define BUFFER_SIZE 300
 #include "tokenizing.h"
 
-// V1
+
 void tokenizing(void) {
+// V1
     printf("*** Start of Tokenizing Words Demo ***\n");
 
     char  words[BUFFER_SIZE];
@@ -35,4 +36,48 @@ void tokenizing(void) {
 
 
     printf("*** End of Tokenizing Words Demo ***\n\n");
-}
+
+
+    // V2
+    printf("*** Start of Tokenizing Phrases Demo ***\n");
+
+    char   phrases[BUFFER_SIZE];
+    char* nextPhrase = NULL;
+    int    phrasesCounter;
+    do {
+        printf("Type a few phrases separated by comma (q to quit):\n");
+
+       //Input is read from the userand stored in the phrases buffer
+        fgets(phrases, BUFFER_SIZE, stdin);
+
+        // Remove the newline character from the input
+        phrases[strlen(phrases) - 1] = '\0';
+
+        // Check if the user has entered 'q' to quit the program
+        if ((strcmp(phrases, "q") != 0)) {
+
+        // Tokenize the input string, separating it by commas
+            nextPhrase = strtok(phrases, ",");
+            phrasesCounter = 1;
+
+            // Start a while loop to process each token (phrase) in the input
+            while (nextPhrase) {
+                printf("Phrase #%d is \'%s\'\n", phrasesCounter++, nextPhrase);
+
+                // Get the next token (phrase) from the input
+                nextPhrase = strtok(NULL, ",");
+
+            }
+        }
+    }
+            // Continue looping until the user enters 'q'
+            while (strcmp(phrases, "q") != 0);
+
+            printf("*** End of Tokenizing Phrases Demo **** **\n\n");
+        
+
+        }
+  
+
+
+
